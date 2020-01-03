@@ -10,4 +10,6 @@ routes.post("/usuarios/criar", LoginController.store);
 routes.post("/usuarios/buscar", LoginController.show);
 routes.get("/usuarios", LoginController.index); //listar
 
+routes.get("/", LoginController.index); //listar
+
 module.exports = routes;
