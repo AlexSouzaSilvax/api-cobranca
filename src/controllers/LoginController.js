@@ -12,10 +12,11 @@ module.exports = {
 
   //Buscar
   async show(req, res) {
-    const { login } = req.body;
+    const { login, senha } = req.body;
 
     let user = await User.findOne({
-      login: login
+      login,
+      senha
     });
 
     return res.json(user);
