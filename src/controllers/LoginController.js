@@ -1,71 +1,65 @@
 //index (Lista), show (buscar), store (Criar), update (atualizar), destroy (apagar)
 
-const User = require('../models/User');
+const User = require("../models/User");
 
 module.exports = {
+  //Listar
+  async index(req, res) {
+    let user = await User.find();
 
-    //Listar
-    async index(req, res) {
+    return res.json(user);
+  },
 
-        let user = await User.find();
+  //Buscar
+  async show(req, res) {
+    const { login } = req.body;
 
-        return res.json(user);
-    },
+    let user = await User.findOne({
+      login: login
+    });
 
-    //Buscar
-    async show(req, res) {
+    return res.json(user);
+  },
 
-        const { login } = req.body;
+  //Criar
+  async store(req, res) {
+    const { email, login, senha } = req.body;
 
-        let user = await User.findOne({
-            login: login
-        });
+    //let user = await User.findOne({ login, senha }); //verifica se o usuario já esta cadastrado
 
-        return res.json(user);
-    },
+    user = await User.create({
+      email: email,
+      login: login,
+      senha: senha
+    });
 
-    //Criar
-    async store(req, res) {
+    return res.json(user);
+  },
 
-        const { email, login, senha } = req.body;
+  //Atualizar
+  async update(req, res) {
+    const { _id, email, login, senha } = req.body;
 
-        //let user = await User.findOne({ login, senha }); //verifica se o usuario já esta cadastrado
+    const filtro = { _id };
+    const atualizacao = { email, login, senha };
 
-        user = await User.create({
-            email: email,
-            login: login,
-            senha: senha
-        });
+    let user = await User.findOneAndUpdate(filtro, atualizacao);
 
-        return res.json(user);
-    },
+    user = await User.findOne({
+      _id
+    });
 
-    //Atualizar
-    /*async update(req, res) {
+    res.json(user);
+  },
 
-        const { _id, email, login, senha } = req.body;
+  //Apagar
+  async destroy(req, res) {
+    const { id } = req.body;
 
-        let user = await User.updateOne({
-            _id: id,
-            email: email,
-            login: login,
-            senha: senha
-        });
+    let user = await User.findByIdAndDelete({
+      _id: id
+    });
 
-        res.json(user);
-    },*/
-
-    //Apagar
-    async destroy(req, res) {
-
-        const { id } = req.body;
-
-        let user = await User.findByIdAndDelete({
-            _id: id
-        });
-
-        return res.json(user);
-    }
-
+    return res.json(user);
+  }
 };
-
