@@ -28,7 +28,8 @@ routes.get("/", (req, res) => {
                 route: "/usuarios/buscar",
                 body: [
                   {
-                    login: "login"
+                    login: "login",
+                    senha: "senha"
                   }
                 ]
               }
