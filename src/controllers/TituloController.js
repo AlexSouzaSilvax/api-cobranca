@@ -35,10 +35,18 @@ module.exports = {
   async update(req, res) {
     const { _id, descricao, valor, dataVenc, status } = req.body;
 
-    const filtro = { _id };
-    const atualizacao = { descricao, valor, dataVenc, status };
-
-    let titulo = await Titulo.findOneAndUpdate(filtro, atualizacao);
+    if (_id) {
+      const filtro = { _id };
+      const atualizacao = { descricao, valor, dataVenc, status };
+      let titulo = await Titulo.findOneAndUpdate(filtro, atualizacao);
+    } else {
+      let titulo = await Titulo.create({
+        descricao: descricao,
+        valor: valor,
+        dataVenc: dataVenc,
+        status: status
+      });
+    }
 
     titulo = await Titulo.findOne({
       _id
