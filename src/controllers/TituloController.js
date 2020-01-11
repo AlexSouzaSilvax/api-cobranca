@@ -38,8 +38,8 @@ module.exports = {
   async update(req, res) {
     const { _id, descricao, valor, dataVenc, status, usuario } = req.body;
 
-    if (_id && usuario) {
-      const filtro = { _id, usuario };
+    if (_id) {
+      const filtro = { _id };
       const atualizacao = { descricao, valor, dataVenc, status };
       let titulo = await Titulo.findOneAndUpdate(filtro, atualizacao);
     } else {
