@@ -5,7 +5,9 @@ const Titulo = require("../models/Titulo");
 module.exports = {
   //Listar
   async index(req, res) {
-    let titulo = await Titulo.find();
+    const { _idUsuario } = req.body;
+    //console.log("AQUI= " + _idUsuario);
+    let titulo = await Titulo.find({ usuario: _idUsuario });
     return res.json(titulo);
   },
   //Buscar
@@ -20,23 +22,24 @@ module.exports = {
   },
   //Criar
   async store(req, res) {
-    const { descricao, valor, dataVenc, status } = req.body;
+    const { descricao, valor, dataVenc, status, usuario } = req.body;
 
     let titulo = await Titulo.create({
-      descricao: descricao,
-      valor: valor,
-      dataVenc: dataVenc,
-      status: status
+      descricao,
+      valor,
+      dataVenc,
+      status,
+      usuario
     });
 
     return res.json(titulo);
   },
   //Atualizar
   async update(req, res) {
-    const { _id, descricao, valor, dataVenc, status } = req.body;
+    const { _id, descricao, valor, dataVenc, status, usuario } = req.body;
 
-    if (_id) {
-      const filtro = { _id };
+    if (_id && usuario) {
+      const filtro = { _id, usuario };
       const atualizacao = { descricao, valor, dataVenc, status };
       let titulo = await Titulo.findOneAndUpdate(filtro, atualizacao);
     } else {
@@ -44,7 +47,8 @@ module.exports = {
         descricao: descricao,
         valor: valor,
         dataVenc: dataVenc,
-        status: status
+        status: status,
+        usuario
       });
     }
 

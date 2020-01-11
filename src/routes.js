@@ -79,8 +79,13 @@ routes.get("/", (req, res) => {
           {
             listarTitulos: [
               {
-                method: "GET",
-                route: "/titulos"
+                method: "POST",
+                route: "/titulos",
+                body: [
+                  {
+                    _idUsuario: _idUsuario
+                  }
+                ]
               }
             ],
             buscarTitulos: [
@@ -147,7 +152,7 @@ routes.post("/usuarios/criar", LoginController.store);
 routes.post("/usuarios/atualizar", LoginController.update);
 routes.post("/usuarios/apagar", LoginController.destroy);
 
-routes.get("/titulos", TituloController.index);
+routes.post("/titulos", TituloController.index);
 routes.post("/titulos/buscar", TituloController.show);
 routes.post("/titulos/criar", TituloController.store);
 routes.post("/titulos/atualizar", TituloController.update);
