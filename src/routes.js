@@ -83,7 +83,7 @@ routes.get("/", (req, res) => {
                 route: "/titulos",
                 body: [
                   {
-                    _idUsuario: _idUsuario
+                    _idUsuario: "_idUsuario"
                   }
                 ]
               }
