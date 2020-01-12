@@ -53,6 +53,29 @@ module.exports = {
     res.json(user);
   },
 
+  //esqueciSenha
+  async esqueciSenha(req, res) {
+    const { email, senha } = req.body;
+
+    const atualizacao = { senha };
+
+    let user = await User.findOne({ email });
+
+    //console.log("AQUI: " + user._id);
+    const { _id } = user;
+
+    const filtro = { _id };
+
+    user = await User.findOneAndUpdate(filtro, atualizacao);
+    //console.log("AQUI2: " + user);
+
+    user = await User.findOne({
+      _id
+    });
+
+    res.json(user);
+  },
+
   //Apagar
   async destroy(req, res) {
     const { id } = req.body;

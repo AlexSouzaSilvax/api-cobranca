@@ -61,6 +61,18 @@ routes.get("/", (req, res) => {
                 ]
               }
             ],
+            esqueciSenha: [
+              {
+                method: "POST",
+                route: "/usuarios/esqueciSenha",
+                body: [
+                  {
+                    email: "email",
+                    senha: "senha"
+                  }
+                ]
+              }
+            ],
             apagarUsuario: [
               {
                 method: "POST",
@@ -150,6 +162,7 @@ routes.get("/usuarios", LoginController.index); //listar
 routes.post("/usuarios/buscar", LoginController.show);
 routes.post("/usuarios/criar", LoginController.store);
 routes.post("/usuarios/atualizar", LoginController.update);
+routes.post("/usuarios/esqueciSenha", LoginController.esqueciSenha);
 routes.post("/usuarios/apagar", LoginController.destroy);
 
 routes.post("/titulos", TituloController.index);
