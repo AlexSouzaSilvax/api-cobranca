@@ -2,6 +2,7 @@ const express = require("express");
 
 const LoginController = require("./controllers/LoginController");
 const TituloController = require("./controllers/TituloController");
+const FeedBackController = require("./controllers/FeedBackController");
 
 const routes = express.Router();
 
@@ -170,5 +171,8 @@ routes.post("/titulos/buscar", TituloController.show);
 routes.post("/titulos/criar", TituloController.store);
 routes.post("/titulos/atualizar", TituloController.update);
 routes.post("/titulos/apagar", TituloController.destroy);
+
+routes.get("/feedback", FeedBackController.index);
+routes.post("/feedback/criar", FeedBackController.store);
 
 module.exports = routes;
