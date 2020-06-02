@@ -3,6 +3,7 @@ const express = require("express");
 const LoginController = require("./controllers/LoginController");
 const TituloController = require("./controllers/TituloController");
 const FeedBackController = require("./controllers/FeedBackController");
+const TweetController = require("./controllers/TweetController");
 
 const routes = express.Router();
 
@@ -174,5 +175,9 @@ routes.post("/titulos/apagar", TituloController.destroy);
 
 routes.get("/feedback", FeedBackController.index);
 routes.post("/feedback/criar", FeedBackController.store);
+
+routes.post("/tweets", TweetController.index);
+routes.post("/tweets/criar", TweetController.store);
+routes.post("/tweets/apagar", TweetController.destroy);
 
 module.exports = routes;

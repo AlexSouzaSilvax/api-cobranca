@@ -24,25 +24,27 @@ module.exports = {
 
   //Criar
   async store(req, res) {
-    const { email, login, senha } = req.body;
+    const { nome, email, login, senha } = req.body;
 
     //let user = await User.findOne({ login, senha }); //verifica se o usuario já esta cadastrado
-
     user = await User.create({
+      nome: nome,
       email: email,
       login: login,
       senha: senha
     });
+    
+    console.log(user);
 
     return res.json(user);
   },
 
   //Atualizar
   async update(req, res) {
-    const { _id, email, login, senha } = req.body;
+    const { _id, nome, email, login, senha } = req.body;
 
     const filtro = { _id };
-    const atualizacao = { email, login, senha };
+    const atualizacao = { nome, email, login, senha };
 
     let user = await User.findOneAndUpdate(filtro, atualizacao);
 
