@@ -4,19 +4,20 @@ const LoginController = require("./controllers/LoginController");
 const TituloController = require("./controllers/TituloController");
 const FeedBackController = require("./controllers/FeedBackController");
 const TweetController = require("./controllers/TweetController");
+const PostController = require("./controllers/PostController");
 
 const routes = express.Router();
 
 routes.get("/", (req, res) => {
   return res.json({
-    Descricao: "API app-cobranca",
+    DescricaO: "API app-cobranca",
     Github: "https://github.com/alexsouzasilvax/api-cobranca",
     Twitter: "https://twitter.com/alexsouzasilvax",
     LinkedIn: "https://www.linkedin.com/in/alexsouzasilvax/",
     rotas: [
       {
         //usuario
-        Usuario: [
+        Usuarios: [
           {
             listaUsuarios: [
               {
@@ -179,5 +180,10 @@ routes.post("/feedback/criar", FeedBackController.store);
 routes.post("/tweets", TweetController.index);
 routes.post("/tweets/criar", TweetController.store);
 routes.post("/tweets/apagar", TweetController.destroy);
+
+routes.post("/post", PostController.index);
+routes.post("/post/criar", PostController.store);
+routes.post("/post/atualizar", PostController.update);
+routes.post("/post/apagar", PostController.destroy);
 
 module.exports = routes;
