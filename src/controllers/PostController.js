@@ -46,7 +46,7 @@ module.exports = {
   async destroy(req, res) {
     const { _id } = req.body;
 
-    let post = await Tweet.findByIdAndDelete({
+    let post = await Post.findByIdAndDelete({
       _id
     });
 
