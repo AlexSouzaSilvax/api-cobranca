@@ -6,7 +6,7 @@ module.exports = {
   //Listar
   async index(req, res) {
     const { usuario } = req.body;
-    let post = await Post.find({ usuario: usuario });
+    let post = await Post.find({ usuario: usuario }).sort({"_id":-1});
     return res.json(post);
   },  
   //Criar
@@ -23,24 +23,26 @@ module.exports = {
   },
   async update(req, res) {
     const { _id, post, hrDt, usuario } = req.body;
+    
+    let pot;
 
     if (_id) {
       const filtro = { _id };
       const atualizacao = { post, hrDt };
-      let posts = await Post.findOneAndUpdate(filtro, atualizacao);
+      pot = await Post.findOneAndUpdate(filtro, atualizacao);
     } else {
-      let posts = await Post.create({
+      pot = await Post.create({
         post: post,
         hrDt: hrDt,
         usuario
       });
     }
 
-    posts = await Post.findOne({
+    pot = await Post.findOne({
       _id
     });
 
-    res.json(posts);
+    res.json(pot);
   },
   //Apagar
   async destroy(req, res) {
