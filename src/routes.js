@@ -5,6 +5,8 @@ const TituloController = require("./controllers/TituloController");
 const FeedBackController = require("./controllers/FeedBackController");
 const TweetController = require("./controllers/TweetController");
 const PostController = require("./controllers/PostController");
+const DisciplinaController = require("./controllers/DisciplinaController");
+const AulaController = require("./controllers/AulaController");
 
 const routes = express.Router();
 
@@ -22,8 +24,8 @@ routes.get("/", (req, res) => {
             listaUsuarios: [
               {
                 method: "GET",
-                route: "/usuarios"
-              }
+                route: "/usuarios",
+              },
             ],
             buscarUsuario: [
               {
@@ -32,10 +34,10 @@ routes.get("/", (req, res) => {
                 body: [
                   {
                     login: "login",
-                    senha: "senha"
-                  }
-                ]
-              }
+                    senha: "senha",
+                  },
+                ],
+              },
             ],
             criarUsuario: [
               {
@@ -45,10 +47,10 @@ routes.get("/", (req, res) => {
                   {
                     email: "email",
                     login: "login",
-                    senha: "senha"
-                  }
-                ]
-              }
+                    senha: "senha",
+                  },
+                ],
+              },
             ],
             atualizarUsuario: [
               {
@@ -59,10 +61,10 @@ routes.get("/", (req, res) => {
                     _id: "_id",
                     email: "email",
                     login: "login",
-                    senha: "senha"
-                  }
-                ]
-              }
+                    senha: "senha",
+                  },
+                ],
+              },
             ],
             esqueciSenha: [
               {
@@ -71,10 +73,10 @@ routes.get("/", (req, res) => {
                 body: [
                   {
                     email: "email",
-                    senha: "senha"
-                  }
-                ]
-              }
+                    senha: "senha",
+                  },
+                ],
+              },
             ],
             apagarUsuario: [
               {
@@ -82,12 +84,12 @@ routes.get("/", (req, res) => {
                 route: "/usuarios/apagar",
                 body: [
                   {
-                    _id: "_id"
-                  }
-                ]
-              }
-            ]
-          }
+                    _id: "_id",
+                  },
+                ],
+              },
+            ],
+          },
         ],
         //titulo
         Titulo: [
@@ -98,10 +100,10 @@ routes.get("/", (req, res) => {
                 route: "/titulos",
                 body: [
                   {
-                    _idUsuario: "_idUsuario"
-                  }
-                ]
-              }
+                    _idUsuario: "_idUsuario",
+                  },
+                ],
+              },
             ],
             buscarTitulos: [
               {
@@ -109,10 +111,10 @@ routes.get("/", (req, res) => {
                 route: "/titulos/buscar",
                 body: [
                   {
-                    _id: "id"
-                  }
-                ]
-              }
+                    _id: "id",
+                  },
+                ],
+              },
             ],
             criarTitulo: [
               {
@@ -123,10 +125,10 @@ routes.get("/", (req, res) => {
                     descricao: "descricao",
                     valor: "valor",
                     dataVenc: "dataVenc",
-                    status: "status"
-                  }
-                ]
-              }
+                    status: "status",
+                  },
+                ],
+              },
             ],
             atualizarTitulo: [
               {
@@ -138,10 +140,10 @@ routes.get("/", (req, res) => {
                     descricao: "descricao",
                     valor: "valor",
                     dataVenc: "dataVenc",
-                    status: "status"
-                  }
-                ]
-              }
+                    status: "status",
+                  },
+                ],
+              },
             ],
             apagarTitulo: [
               {
@@ -149,15 +151,15 @@ routes.get("/", (req, res) => {
                 route: "/titulos/apagar",
                 body: [
                   {
-                    _id: "_id"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                    _id: "_id",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   });
 });
 
@@ -185,5 +187,15 @@ routes.post("/post", PostController.index);
 routes.post("/post/criar", PostController.store);
 routes.post("/post/atualizar", PostController.update);
 routes.post("/post/apagar", PostController.destroy);
+
+routes.post("/helper-class/disciplinas", DisciplinaController.index);
+routes.post("/helper-class/disciplina/criar", DisciplinaController.store);
+routes.post("/helper-class/disciplina/atualizar", DisciplinaController.update);
+routes.post("/helper-class/disciplina/apagar", DisciplinaController.destroy);
+
+routes.post("/helper-class/aulas", AulaController.index);
+routes.post("/helper-class/aula/criar", AulaController.store);
+routes.post("/helper-class/aula/atualizar", AulaController.update);
+routes.post("/helper-class/aula/apagar", AulaController.destroy);
 
 module.exports = routes;
