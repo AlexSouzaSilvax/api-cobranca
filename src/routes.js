@@ -159,6 +159,48 @@ routes.get("/", (req, res) => {
             ],
           },
         ],
+
+
+        //lancamentos - fincon
+        Lancamentos: [
+          {
+            listar: [
+              {
+                method: "POST",
+                route: "/fincon/lancamentos",
+                body: [
+                  {
+                    _idUsuario: "_idUsuario",
+                  },
+                ],
+              },
+            ],
+            buscar: [
+              {
+                method: "POST",
+                route: "/fincon/lancamento/buscar",
+                body: [
+                  {
+                    _id: "id",
+                  },
+                ],
+              },
+            ],
+            criar: [
+              {
+                method: "POST",
+                route: "/fincon/lancamento/criar",
+                body: [
+                  {
+                    csacascascsacascascascc
+                  },
+                ],
+              },
+            ]
+      }
+    ],
+
+
       },
     ],
   });
