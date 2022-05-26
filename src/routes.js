@@ -7,6 +7,7 @@ const TweetController = require("./controllers/TweetController");
 const PostController = require("./controllers/PostController");
 const DisciplinaController = require("./controllers/DisciplinaController");
 const AulaController = require("./controllers/AulaController");
+const LancamentoController = require("./controllers/LancamentoController");
 
 const routes = express.Router();
 
@@ -197,5 +198,10 @@ routes.post("/helper-class/aulas", AulaController.index);
 routes.post("/helper-class/aula/criar", AulaController.store);
 routes.post("/helper-class/aula/atualizar", AulaController.update);
 routes.post("/helper-class/aula/apagar", AulaController.destroy);
+
+routes.post("/fincon/lancamentos", LancamentoController.index);
+routes.post("/fincon/lancamento/criar", LancamentoController.store);
+routes.post("/fincon/lancamento/atualizar", LancamentoController.update);
+routes.post("/fincon/lancamento/apagar", LancamentoController.destroy);
 
 module.exports = routes;
